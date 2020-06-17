@@ -1,0 +1,42 @@
+<h1>Flights Booker</h1>
+<hr>
+
+<h2>Search flights:</h2>
+<%= form_with(url: "/flights", method: "get", local: true) do %>
+  <%= label_tag(:query, "Search for departing airport code:") %>
+  <%= text_field_tag(:query) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<h2>Dropdown menus:</h2>
+<%= form_with(url: "/flights", method: "get", local: true) do %>
+  <p>
+    <%= label_tag(:from_airport, "Departing airport:") %>
+    <%= select_tag(:from_airport,
+   options_from_collection_for_select(Airport.all, :id, :code))%>
+  </p>
+  <p>
+    <%= label_tag(:to_airport, "Arriving airport:") %>
+    <%= select_tag(:to_airport,
+   options_from_collection_for_select(Airport.all, :id, :code))%>
+  </p>
+  <p>
+    <%= label_tag(:num_of_passengers, "Number of passengers:") %>
+    <%= select_tag(:num_of_passengers,
+   options_for_select(@passenger_array))%>
+  </p>
+  <p>
+    <%= label_tag(:departure_date, "Departure date:") %>
+    <%= select_tag(:departure_date, options_for_select(@departure_date) ) %>
+  </p>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<h3>Available flights:</h3>
+<% @flights.each do |flight| %>
+  <p>********</p>
+  <p> From: <%= flight.from_airport.code %> </p>
+  <p> To: <%= flight.to_airport.code %> </p>
+  <p> Date: <%= flight.start_datetime %> </p>
+  <p> Duration: <%= flight.flight_duration_in_seconds %> </p>
+<% end %>
