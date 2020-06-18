@@ -13,7 +13,7 @@ Airport.create(code: "KRK")
 Airport.create(code: "DTW")
 Airport.create(code: "ARZ")
 
-6.times do
+20.times do
   Flight.create(start_airport_id: rand(1..3),
                 finish_airport_id: rand(4..6),
                 start_datetime: Time.now,

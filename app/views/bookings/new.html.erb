@@ -1,0 +1,10 @@
+<h1>BOOKING</h1>
+<hr>
+<%= params %>
+
+<h3>Flight details:</h3>
+<p> From: <%= @flight.from_airport.code %> </p>
+<p> To: <%= @flight.to_airport.code %> </p>
+<p> Date: <%= @flight.start_datetime %> </p>
+<p> Duration: <%= @flight.flight_duration_in_seconds %> </p>
+<p> Number of passengers: <%= params[:num_of_passengers] %> </p>
