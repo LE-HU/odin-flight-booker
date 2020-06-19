@@ -1,4 +1,12 @@
 class BookingsController < ApplicationController
+  def show
+    @booking = Booking.find(params[:id])
+    @flight = Flight.find(@booking.flight_id)
+    @passengers = @booking.passengers
+    @from_airport = @flight.from_airport.code
+    @to_airport = @flight.to_airport.code
+  end
+
   def new
     @flight = Flight.find(params[:picked_flight])
     @num_of_passengers = params[:num_of_passengers]
@@ -12,8 +20,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
 
     if @booking.save
-      redirect_to flights_path
+      redirect_to booking_path(@booking)
     else
+      render "new"
     end
   end
 

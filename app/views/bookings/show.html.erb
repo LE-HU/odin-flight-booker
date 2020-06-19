@@ -1,0 +1,20 @@
+<h1>Booking details:</h1>
+<hr>
+<%= @flight %>
+<%= @booking %>
+<%= @passengers %>
+<br>
+<%= link_to 'Index', root_path %>
+<hr>
+<h2>Flight details:</h2>
+<p> Flight from: <%= @from_airport %> </p>
+<p> Flight to: <%= @to_airport %> </p>
+<p> Flight date: <%= @flight.start_datetime %> </p>
+<p> Flight duration in seconds: <%= @flight.flight_duration_in_seconds %> </p>
+
+<h2>Passengers:</h2>
+<% @passengers.each do |passenger| %>
+  <p> Name: <%= passenger.name %> </p>
+  <p> Email: <%= passenger.email %> </p>
+  <p> **** </p>
+<% end %>
