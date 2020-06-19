@@ -2,6 +2,8 @@ class Flight < ApplicationRecord
   belongs_to :from_airport, class_name: "Airport", foreign_key: "start_airport_id"
   belongs_to :to_airport, class_name: "Airport", foreign_key: "finish_airport_id"
 
+  has_many :bookings
+
   # def self.search(from_query, to_query)
   #   if from_query && to_query
   #     from_airport = Airport.find_by(code: from_query)

@@ -8,3 +8,22 @@
 <p> Date: <%= @flight.start_datetime %> </p>
 <p> Duration: <%= @flight.flight_duration_in_seconds %> </p>
 <p> Number of passengers: <%= params[:num_of_passengers] %> </p>
+
+<hr>
+
+<h2>Passenger details:</h2>
+
+<%= form_with(model: @booking, local: true) do |f| %>
+  <%= f.hidden_field :flight_id, value: @flight.id %>
+  <%= f.hidden_field :num_of_passengers, value: @num_of_passengers %>
+
+  <%= f.fields_for :passengers do |passenger| %>
+    <%= passenger.label :name %><br>
+    <%= passenger.text_field :name %><br>
+    <%= passenger.label :email %><br>
+    <%= passenger.email_field :email %><br>
+    <br>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>
