@@ -18,8 +18,10 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    @user = @booking.passengers.first
 
     if @booking.save
+      PassengerMailer.with(user: @user).welcome_email.deliver_now
       redirect_to booking_path(@booking)
     else
       render "new"
